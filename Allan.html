@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSSF Saving Calculator</title>
+    <style>
+        
+    label {background-color: #3b1fb4;
+        width: 100px;
+        line-height: 20px;
+        color: black;
+        margin: 1.6;
+        padding: 100;
+        text-align: center;
+        
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="number"] {
+        width: 100px;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    button {
+        padding: 10px 30px;
+        background-color: #3b1fb4;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #050a05;
+    }
+    #results {
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+<h2>NSSF Calculator</h2>
+<form id="nssfForm">
+    <label for="age">Enter your age:</label>
+    <input type="number" id="age" name="age" required>
+    
+    <label for="yearsOfWork">Enter years worked:</label>
+    <input type="number" id="yearsOfWork" name="yearsOfWork" required>
+    
+    <label for="basicSalary">Enter basic salary:</label>
+    <input type="number" id="basicSalary" name="basicSalary" required>
+    
+    <button type="button" onclick="calculateNSSF()">Calculate NSSF</button>
+</form>
+
+<div id="results">
+    <!-- Results will be displayed here -->
+</div>
+
+<script>
+    function calculateNSSF() {
+        // Get input values
+        let age = parseInt(document.getElementById('age').value);
+        let yearsOfWork = parseInt(document.getElementById('yearsOfWork').value);
+        let basicSalary = parseFloat(document.getElementById('basicSalary').value);
+
+        // Constants
+        const retirementAge = 55;
+        const monthsPerYear = 12;
+        const nssfPercentage = 0.15;
+
+        // Calculate years to retirement
+        let yearsToRetirement = retirementAge - age;
+
+        // Calculate total NSSF accumulated
+        let totalNSSF = yearsOfWork * monthsPerYear * (nssfPercentage * basicSalary);
+
+        // Display results
+        let resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = `
+            <h3>Results</h3>
+            <p>Years to retirement: ${yearsToRetirement}</p>
+            <p>Total NSSF accumulated: ${totalNSSF.toFixed(2)}</p>
+        `;
+    }
+</script>
+</body>
+</html>
+</body>
+</html>
